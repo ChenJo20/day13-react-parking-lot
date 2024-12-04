@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "The Plaza",
+    "tickets": [
+      {"position": 1, "plateNumber": "AA-1234", "parkingLot": 1},
+      {"position": 2, "plateNumber": "BB-5678", "parkingLot": 1},
+      {"position": 3, "plateNumber": "CC-9101", "parkingLot": 1},
+      {"position": 4, "plateNumber": "DD-1121", "parkingLot": 1},
+      {"position": 5, "plateNumber": "EE-3141", "parkingLot": 1},
+      {"position": 6, "plateNumber": "FF-5161", "parkingLot": 1},
+      {"position": 7, "plateNumber": "GG-7181", "parkingLot": 1},
+      {"position": 8, "plateNumber": "HH-9202", "parkingLot": 1},
+      {"position": 9, "plateNumber": "II-1222", "parkingLot": 1}
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Central Park",
+    "tickets": [
+      {"position": 1, "plateNumber": "JJ-1234", "parkingLot": 2},
+      {"position": 2, "plateNumber": "KK-5678", "parkingLot": 2},
+      {"position": 3, "plateNumber": "LL-9101", "parkingLot": 2},
+      {"position": 4, "plateNumber": "MM-1121", "parkingLot": 2},
+      {"position": 5, "plateNumber": "NN-3141", "parkingLot": 2},
+      {"position": 6, "plateNumber": "OO-5161", "parkingLot": 2},
+      {"position": 7, "plateNumber": "PP-7181", "parkingLot": 2},
+      {"position": 8, "plateNumber": "QQ-9202", "parkingLot": 2},
+      {"position": 9, "plateNumber": "RR-1222", "parkingLot": 2},
+      {"position": 10, "plateNumber": "SS-3242", "parkingLot": 2},
+      {"position": 11, "plateNumber": "TT-5262", "parkingLot": 2},
+      {"position": 12, "plateNumber": "UU-7282", "parkingLot": 2}
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Downtown Garage",
+    "tickets": [
+      {"position": 1, "plateNumber": "VV-1234", "parkingLot": 3},
+      {"position": 2, "plateNumber": "WW-5678", "parkingLot": 3},
+      {"position": 3, "plateNumber": "XX-9101", "parkingLot": 3},
+      {"position": 4, "plateNumber": "YY-1121", "parkingLot": 3},
+      {"position": 5, "plateNumber": "ZZ-3141", "parkingLot": 3},
+      {"position": 6, "plateNumber": "AA-5161", "parkingLot": 3},
+      {"position": 7, "plateNumber": "BB-7181", "parkingLot": 3},
+      {"position": 8, "plateNumber": "CC-9202", "parkingLot": 3},
+      {"position": 9, "plateNumber": "DD-1222", "parkingLot": 3}
+    ]
+  }
+]

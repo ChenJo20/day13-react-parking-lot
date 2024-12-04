@@ -1,0 +1,13 @@
+.parking-lot-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.parking-lot-wrapper {
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
