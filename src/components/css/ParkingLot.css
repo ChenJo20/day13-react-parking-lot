@@ -1,44 +1,39 @@
 .parking-lot {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ensure the component is centered */
 }
 
 .parking-lot-row {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 10px; /* Adjust vertical spacing */
+    justify-content: space-between;
 }
 
 .parking-lot-cell {
-    width: 100px;
-    height: 30px;
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px; /* Adjust horizontal spacing */
-    background-color: #f0f0f0;
-    position: relative;
-    border-radius: 15px; /* Rounded corners for streamlined shape */
+    flex: 1;
+    border: 1px solid rgb(205, 157, 157);
+    padding: 15px 50px;
+    text-align: center;
 }
 
-.parking-lot-cell::before,
-.parking-lot-cell::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: #fff; /* White fill for tires */
-    border: 2px solid #000; /* Black border for tires */
-    border-radius: 50%;
-    bottom: -6px;
+.parking-lot-row:first-child .parking-lot-cell {
+    border-top: none;
 }
 
-.parking-lot-cell::before {
-    left: 10px;
+.parking-lot-row:last-child .parking-lot-cell {
+    border-bottom: none;
 }
 
-.parking-lot-cell::after {
-    right: 10px;
+.parking-lot-cell:first-child {
+    border-left: none;
+}
+
+.parking-lot-cell:last-child {
+    border-right: none;
+}
+
+.plate-box {
+    background-color: #90eeab;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid #666
 }

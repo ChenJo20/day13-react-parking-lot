@@ -15,7 +15,7 @@ const ParkingLot = ({ lot }) => {
                 <div key={rowIndex} className="parking-lot-row">
                     {row.map((ticket) => (
                         <div key={ticket.position} className="parking-lot-cell">
-                            {ticket.plateNumber}
+                            <div className="plate-box">{ticket.plateNumber}</div>
                         </div>
                     ))}
                 </div>
