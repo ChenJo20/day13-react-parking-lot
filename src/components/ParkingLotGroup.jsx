@@ -10,8 +10,8 @@ const ParkingLotGroup = () => {
         <div className="parking-lot-group">
             {parkingLotsWithTickets.map((lot, _) => (
                 <div key={lot.id} className="parking-lot-wrapper">
-                    <h2>{lot.name}</h2>
                     <ParkingLot lot={lot}/>
+                    <h2 className="parking-lot-name">{lot.name}</h2>
                 </div>
             ))}
         </div>
