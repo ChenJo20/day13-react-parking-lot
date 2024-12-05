@@ -1,6 +1,7 @@
 import React from 'react';
 import {useParkingLots} from '../context/ParkingLotsContext';
 import './css/ParkingLotGroup.css';
+import ParkingLot from "./ParkingLot";
 
 const ParkingLotGroup = () => {
     const parkingLotsWithTickets = useParkingLots();
@@ -10,7 +11,7 @@ const ParkingLotGroup = () => {
             {parkingLotsWithTickets.map((lot, _) => (
                 <div key={lot.id} className="parking-lot-wrapper">
                     <h2>{lot.name}</h2>
-                    {/*<ParkingLot lot={lot}/>*/}
+                    <ParkingLot lot={lot}/>
                 </div>
             ))}
         </div>
