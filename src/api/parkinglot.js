@@ -10,10 +10,10 @@ export const getParkingLotsWithTickets = async () => {
     return response.data
 }
 
-export const addTodo = async (text) => {
-    const response = await instance.post("/todos", {
-        text: text,
-        done: false
-    })
-    return response.data
-}
+export const parkCar = async (plateNumber, parkingBoy) => {
+    const response = await instance.post("/parking-lots/park", {
+        plateNumber,
+        parkingBoy
+    });
+    return response.data;
+};

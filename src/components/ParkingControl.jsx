@@ -1,22 +1,38 @@
 // Add this new component in a new file named ParkingControl.jsx
-import React, {useState} from 'react';
-import {Button, Input, Select} from 'antd';
+import React, {useContext, useState} from 'react';
+import {Alert, Button, Input, Select} from 'antd';
 import './css/ParkingControl.css';
 import {CheckCircleOutlined, CloseCircleOutlined} from "@ant-design/icons";
+import {ParkingLotContext} from "../App";
+import {ACTIONS_MAP} from "../context/ParkingLotsContext";
+import {parkCar} from "../api/parkinglot";
 
 const {Option} = Select;
 
 const ParkingControl = () => {
     const [plateNumber, setPlateNumber] = useState('');
     const [parkingBoyType, setParkingBoyType] = useState('Standard');
-
     const [isValidPlateNumber, setIsValidPlateNumber] = useState(null);
+    const [error, setError] = useState(null);
+    const { dispatch } = useContext(ParkingLotContext);
 
     const validatePlateNumber = (e) => {
         const plateNumberPattern = /^[A-Z]{2}-\d{4}$/;
         const isValid = plateNumberPattern.test(e.target.value);
         setIsValidPlateNumber(isValid);
         setPlateNumber(e.target.value);
+    };
+
+    const handlePark = async () => {
+        if (isValidPlateNumber) {
+            try {
+                const ticket = await parkCar(plateNumber, parkingBoyType);
+                dispatch({ type: ACTIONS_MAP.PARK, payload: ticket });
+                setError(null);
+            } catch (error) {
+                setError(error.response.data);
+            }
+        }
     };
 
     return (
@@ -52,8 +68,9 @@ const ParkingControl = () => {
                 <Option value="Smart">Smart</Option>
                 <Option value="SuperSmart">SuperSmart</Option>
             </Select>
-            <Button type="primary" className="park-button">Park</Button>
+            <Button type="primary" className="park-button" onClick={handlePark}>Park</Button>
             <Button type="primary" className="fetch-button">Fetch</Button>
+            {error && <Alert message={error} type="error" showIcon />}
         </div>
     );
 };
