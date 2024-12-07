@@ -1,6 +1,6 @@
 // Add this new component in a new file named ParkingControl.jsx
 import React, {useContext, useState} from 'react';
-import {Alert, Button, Input, Select} from 'antd';
+import {Alert, Button, Input, Modal, Select} from 'antd';
 import './css/ParkingControl.css';
 import {CheckCircleOutlined, CloseCircleOutlined} from "@ant-design/icons";
 import {ParkingLotContext} from "../App";
@@ -14,6 +14,8 @@ const ParkingControl = () => {
     const [parkingBoyType, setParkingBoyType] = useState('Standard');
     const [isValidPlateNumber, setIsValidPlateNumber] = useState(null);
     const [error, setError] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalData, setModalData] = useState(null);
     const {dispatch} = useContext(ParkingLotContext);
 
     const validatePlateNumber = (e) => {
@@ -38,8 +40,11 @@ const ParkingControl = () => {
     const handleFetch = async () => {
         if (isValidPlateNumber) {
             try {
-                const car = await fetchCar(plateNumber);
-                dispatch({type: ACTIONS_MAP.FETCH, payload: car});
+                const data = await fetchCar(plateNumber);
+                setModalData(data);
+                setModalVisible(true);
+                console.log(data)
+                dispatch({type: ACTIONS_MAP.FETCH, payload: data.car});
                 setError(null);
             } catch (error) {
                 setError(error.response.data);
@@ -83,6 +88,25 @@ const ParkingControl = () => {
             <Button type="primary" className="park-button" onClick={handlePark}>Park</Button>
             <Button type="primary" className="fetch-button" onClick={handleFetch}>Fetch</Button>
             {error && <Alert message={error} type="error" showIcon/>}
+            <Modal
+                title="Fetch Car Details"
+                visible={modalVisible}
+                onCancel={() => setModalVisible(false)}
+                footer={[
+                    <Button key="close" onClick={() => setModalVisible(false)}>
+                        Close
+                    </Button>,
+                ]}
+            >
+                {modalData && (
+                    <div>
+                        <p><strong>Entry Time:</strong> {modalData.parkDate}</p>
+                        <p><strong>Exit Time:</strong> {modalData.fetchTime}</p>
+                        <p><strong>Duration:</strong> {modalData.hours} hour {modalData.minutes} minute</p>
+                        <p><strong>Fee:</strong> {modalData.fee}</p>
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 };
