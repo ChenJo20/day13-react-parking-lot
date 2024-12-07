@@ -5,7 +5,7 @@ import './css/ParkingControl.css';
 import {CheckCircleOutlined, CloseCircleOutlined} from "@ant-design/icons";
 import {ParkingLotContext} from "../App";
 import {ACTIONS_MAP} from "../context/ParkingLotsContext";
-import {parkCar} from "../api/parkinglot";
+import {fetchCar, parkCar} from "../api/parkinglot";
 
 const {Option} = Select;
 
@@ -14,7 +14,7 @@ const ParkingControl = () => {
     const [parkingBoyType, setParkingBoyType] = useState('Standard');
     const [isValidPlateNumber, setIsValidPlateNumber] = useState(null);
     const [error, setError] = useState(null);
-    const { dispatch } = useContext(ParkingLotContext);
+    const {dispatch} = useContext(ParkingLotContext);
 
     const validatePlateNumber = (e) => {
         const plateNumberPattern = /^[A-Z]{2}-\d{4}$/;
@@ -27,7 +27,19 @@ const ParkingControl = () => {
         if (isValidPlateNumber) {
             try {
                 const ticket = await parkCar(plateNumber, parkingBoyType);
-                dispatch({ type: ACTIONS_MAP.PARK, payload: ticket });
+                dispatch({type: ACTIONS_MAP.PARK, payload: ticket});
+                setError(null);
+            } catch (error) {
+                setError(error.response.data);
+            }
+        }
+    };
+
+    const handleFetch = async () => {
+        if (isValidPlateNumber) {
+            try {
+                const car = await fetchCar(plateNumber);
+                dispatch({type: ACTIONS_MAP.FETCH, payload: car});
                 setError(null);
             } catch (error) {
                 setError(error.response.data);
@@ -69,8 +81,8 @@ const ParkingControl = () => {
                 <Option value="SuperSmart">SuperSmart</Option>
             </Select>
             <Button type="primary" className="park-button" onClick={handlePark}>Park</Button>
-            <Button type="primary" className="fetch-button">Fetch</Button>
-            {error && <Alert message={error} type="error" showIcon />}
+            <Button type="primary" className="fetch-button" onClick={handleFetch}>Fetch</Button>
+            {error && <Alert message={error} type="error" showIcon/>}
         </div>
     );
 };

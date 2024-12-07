@@ -9,13 +9,11 @@ import {LoadingOutlined} from "@ant-design/icons";
 
 const ParkingLotGroup = () => {
     const {state , dispatch} = useContext(ParkingLotContext);
-    console.log(state)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true);
         getParkingLotsWithTickets()
             .then((parkingLots) => {
-                console.log("fetched:", parkingLots)
                 dispatch({type: ACTIONS_MAP.INIT, payload: parkingLots})
             })
             .finally(

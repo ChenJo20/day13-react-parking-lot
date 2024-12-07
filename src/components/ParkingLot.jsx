@@ -4,7 +4,6 @@ import './css/ParkingLot.css';
 const ParkingLot = ({lot}) => {
     const rows = [];
     const tickets = lot.tickets;
-    console.log("tickets:", lot.tickets)
     for (let i = 0; i < tickets.length; i += 3) {
         rows.push(tickets.slice(i, i + 3));
     }

@@ -17,3 +17,8 @@ export const parkCar = async (plateNumber, parkingBoy) => {
     });
     return response.data;
 };
+
+export const fetchCar = async (plateNumber) => {
+    const response = await instance.post("/parking-lots/fetch", { plateNumber });
+    return response.data;
+};
