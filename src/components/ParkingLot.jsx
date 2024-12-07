@@ -1,10 +1,10 @@
 import React from 'react';
 import './css/ParkingLot.css';
 
-const ParkingLot = ({ lot }) => {
+const ParkingLot = ({lot}) => {
     const rows = [];
     const tickets = lot.tickets;
-
+    console.log("tickets:", lot.tickets)
     for (let i = 0; i < tickets.length; i += 3) {
         rows.push(tickets.slice(i, i + 3));
     }
@@ -15,7 +15,11 @@ const ParkingLot = ({ lot }) => {
                 <div key={rowIndex} className="parking-lot-row">
                     {row.map((ticket) => (
                         <div key={ticket.position} className="parking-lot-cell">
-                            <div className="plate-box">{ticket.plateNumber}</div>
+                            {ticket.plateNumber ? (
+                                <div className="plate-box">{ticket.plateNumber}</div>
+                            ) : (
+                                <div className="empty-plate-box"></div>
+                            )}
                         </div>
                     ))}
                 </div>

@@ -1,10 +1,10 @@
 // Add this new component in a new file named ParkingControl.jsx
-import React, { useState } from 'react';
-import { Input, Select, Button } from 'antd';
+import React, {useState} from 'react';
+import {Button, Input, Select} from 'antd';
 import './css/ParkingControl.css';
 import {CheckCircleOutlined, CloseCircleOutlined} from "@ant-design/icons";
 
-const { Option } = Select;
+const {Option} = Select;
 
 const ParkingControl = () => {
     const [plateNumber, setPlateNumber] = useState('');

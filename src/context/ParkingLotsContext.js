@@ -1,22 +1,15 @@
-import React, { createContext, useReducer, useContext } from 'react';
-import parkingLotsData from '../data/ParkingLotsWithTickets.json';
+const ACTIONS = {
+    INIT: 'init'
+};
 
-const ParkingLotsContext = createContext();
-
-const parkingLotsReducer = (state, action) => {
+export const parkingLotsReducer = (state, action) => {
     switch (action.type) {
+        case ACTIONS.INIT:
+            console.log("payload", action.payload)
+            return action.payload
         default:
             return state;
     }
 };
 
-export const ParkingLotsProvider = ({ children }) => {
-    const [state] = useReducer(parkingLotsReducer, parkingLotsData);
-    return (
-        <ParkingLotsContext.Provider value={state}>
-            {children}
-        </ParkingLotsContext.Provider>
-    );
-};
-
-export const useParkingLots = () => useContext(ParkingLotsContext);
+export const ACTIONS_MAP = ACTIONS;
